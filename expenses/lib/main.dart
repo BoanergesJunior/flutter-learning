@@ -1,6 +1,7 @@
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 import './components/transaction_list.dart';
+import './components/transaction_form.dart';
 
 void main() => runApp(ExpensesApp());
 
@@ -14,9 +15,6 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
-
   final _transactions = [
     Transaction(
         id: 't1',
@@ -30,49 +28,23 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Despesas Pessoais'),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              child: Card(
-                elevation: 5,
-                color: Colors.blue,
-                child: Text('Grafico'),
-              ),
-            ),
-            TransactionList(_transactions),
-            Card(
+      appBar: AppBar(
+        title: Text('Despesas Pessoais'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            child: Card(
               elevation: 5,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: titleController,
-                      decoration: InputDecoration(labelText: 'Título'),
-                    ),
-                    TextField(
-                      controller: valueController,
-                      decoration: InputDecoration(labelText: 'Valor R\$'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: Text('Nova Transação'),
-                          style: TextButton.styleFrom(primary: Colors.purple),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        ));
+              color: Colors.blue,
+              child: Text('Grafico'),
+            ),
+          ),
+          TransactionList(_transactions),
+          TransactionForm()
+        ],
+      ),
+    );
   }
 }
