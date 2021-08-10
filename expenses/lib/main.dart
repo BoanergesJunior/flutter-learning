@@ -44,6 +44,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'Novo Tênis de corrida',
+      value: 310.76,
+      date: DateTime.now().subtract(Duration(days: 6)),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de luz',
+      value: 110.20,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Conta de Água',
+      value: 33.70,
+      date: DateTime.now().subtract(Duration(days: 5)),
+    ),
+  ];
+
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
@@ -74,8 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
           return TransactionForm(_addTransaction);
         });
   }
-
-  final List<Transaction> _transactions = [];
 
   @override
   Widget build(BuildContext context) {
